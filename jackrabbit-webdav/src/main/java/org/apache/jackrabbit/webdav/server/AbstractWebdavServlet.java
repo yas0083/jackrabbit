@@ -632,7 +632,8 @@ abstract public class AbstractWebdavServlet extends HttpServlet implements DavCo
         DavResource parentResource = resource.getCollection();
         if (parentResource == null || !parentResource.exists()) {
             // parent does not exist
-            response.sendError(DavServletResponse.SC_CONFLICT);
+            // MEMO: apache:mod_dav compatible status
+            response.sendError(DavServletResponse.SC_FORBIDDEN);
             return;
         }
 
